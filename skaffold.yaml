@@ -1,0 +1,19 @@
+apiVersion: skaffold/v1beta12
+kind: Config
+build:
+  artifacts:
+  - image: project-dev1
+    context: .
+    bazel:
+      target: //:app-img
+      args:
+        - --compilation_mode=dbg
+        - --features=pure
+  - image: project-dev2
+    context: .
+    bazel:
+      target: //app:app-img
+      args:
+        - --compilation_mode=dbg
+        - --features=pure
+
